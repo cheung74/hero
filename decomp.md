@@ -20,6 +20,12 @@ function Counter(props) {
 }
 ```
 
+## Ans
+Missing setCount function, since useState will return 2 variables, first is the state, second is setState
+Second is onClick method, should be like this
+onClick={() => setCount(previous => previous +1 )}
+since react setState is async action, if we click the button too quick, the state will not update as expected, so we need to access the previous state and add the previous state by 1 to solve the issue.
+
 ### Q2. Events
 Explain the difference between these 4 ways of passing a function to a component. </br>
 What will happen when you click each of these buttons and why?
@@ -53,6 +59,16 @@ class App extends React.Component {
 }
 ```
 
+##Ans
+
+click1 button since will directly execute, even without clicking the button
+click3 button since bind with click1, which will lead the same behavior as click1, will execute after render function is execute.
+both of them the onClick function are not working since the function is executed
+click2 button will form error, since the function without bind anything, with lead "this" as undefine
+click4 button will success call the alert, since using the arrow function that auto bind with the current "this" to the method
+
+
+
 ### Q3. Memoization
 Memoized selectors are a common pattern in ReactJS applications to serve cached data derived from a global state. 
 
@@ -77,12 +93,18 @@ test('memoized selectors', () => {
   );
   
   expect(fn1(stateA) === fn1(stateB)).toBeTruthy();
+  // fail, since they have same value but different addresses to the variable.
   expect(fn1(stateA) === fn1(stateC)).toBeTruthy();
+  // fail, since a will return [2,3], and c will return [1,3], also their addresses are different.
   expect(fn1(stateB) !== fn1(stateC)).toBeTruthy();
-  
+  //pass
   expect(fn2(stateA) === fn2(stateA)).toBeTruthy();
+  //fail, since fn2 will create new array when it executed, === is compare the value also the addresses when the data type is reference
   expect(fn2(stateA) === fn2(stateB)).toBeTruthy();
+  //fail, fn2(stateA) and fn2(stateB) have different values, also the addresses are different.
   expect(fn2(stateA) !== fn2(stateC)).toBeTruthy();
+  //pass
   expect(fn2(stateB) !== fn2(stateC)).toBeTruthy();
+  //pass
 });
 ```
