@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  flex: 1;
+  width: "100%";
+}
+
+.container {
+  display: flex;
+  flex-direction: "row";
+}
+
+div[class*="element"] {
+  height: 40px;
+  border-color: black;
+  border-width: 1px;
+  background-color: black;
+  margin: 8px;
+  color: white;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-radius: 10px;
+}
+.a,
+.b {
+  flex: 50%;
+}
+
+.c{
+    flex: 25%;
+}
+
+.d {
+    flex: 75%
+}
+
+.e {
+  flex: 100%;
+}
