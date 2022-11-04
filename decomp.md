@@ -59,7 +59,7 @@ class App extends React.Component {
 }
 ```
 
-##Ans
+## Ans
 
 click1 button since will directly execute, even without clicking the button
 click3 button since bind with click1, which will lead the same behavior as click1, will execute after render function is execute.
